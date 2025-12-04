@@ -2,7 +2,7 @@ pipeline {
 	agent any
 
 	environment {
-		IMAGE_NAME = "ameniferjeni/projet_devops"
+		IMAGE_NAME = "trabelsinour/workshop"
 		IMAGE_TAG  = "latest"
 	}
 
@@ -17,7 +17,7 @@ pipeline {
 		stage('Checkout') {
 			steps {
 				echo "Récupération du code depuis GitHub..."
-				git branch: 'main', url: 'https://github.com/ameniferjeni/pipline_projet.git'
+				git branch: 'main', url: 'https://github.com/trabelsiNour123/workshop.git'
 			}
 		}
 
@@ -38,7 +38,7 @@ pipeline {
 		stage('Docker Login & Push') {
 			steps {
 				echo "Connexion + push vers DockerHub..."
-				withCredentials([usernamePassword(credentialsId: '3ce804e0-ee34-42a2-b245-c75c40e801ac',
+				withCredentials([usernamePassword(credentialsId: '29de80613b254b71a33df3303dced42b',
 					usernameVariable: 'DOCKER_USER',
 					passwordVariable: 'DOCKER_PASS')]) {
 					sh """
