@@ -25,5 +25,6 @@ COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8080
 
 
+
 # Commande pour exécuter l'application
 ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar /app/app.jar"]
