@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: atelierdevops
+  namespace: devops
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: atelierdevops
+  template:
+    metadata:
+      labels:
+        app: atelierdevops
+    spec:
+      containers:
+        - name: atelierdevops
+          image: trabelsinour/atelierdevops:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mysql://mysql-service.devops.svc.cluster.local:3308/springdb?useSSL=false&allowPublicKeyRetrieval=true
+            - name: SPRING_DATASOURCE_USERNAME
+              value: root
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: root123
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: atelierdevops-service
+  namespace: devops
+spec:
+  selector:
+    app: atelierdevops
+  ports:
+    - port: 8080
+      targetPort: 8080
+      nodePort: 30007
+  type: NodePort
