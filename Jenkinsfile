@@ -6,7 +6,7 @@ pipeline {
         IMAGE_TAG    = "${env.BUILD_NUMBER}"
         IMAGE        = "${IMAGE_NAME}:${IMAGE_TAG}"
         IMAGE_LATEST = "${IMAGE_NAME}:latest"
-        DOCKER_CRED  = "dockerhub-trabelsi"   // Vérifie que cet ID existe bien dans Jenkins Credentials
+        DOCKER_CRED  = "997570a0-9b48-45fa-b06b-f5828854fe30"   // Vérifie que cet ID existe bien dans Jenkins Credentials
     }
 
     stages {
