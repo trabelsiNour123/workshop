@@ -67,6 +67,16 @@ pipeline {
                 }
             }
         }
+        stage('Deploy to Kubernetes') {
+            steps {
+                echo "Déploiement automatique sur Kubernetes"
+                sh 'kubectl apply -f k8s/mysql-deployment.yaml -n devops'
+                sh 'kubectl apply -f k8s/spring-deployment.yaml -n devops'
+                sh 'kubectl rollout restart deployment/atelierdevops -n devops'
+                sh 'kubectl get pods -n devops'
+                sh 'kubectl get services -n devops'
+            }
+        }
     }
 
     post {
